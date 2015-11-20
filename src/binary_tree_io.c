@@ -14,7 +14,17 @@ binary_tree* binary_tree_create_f(FILE* stream){
 }
 
 binary_tree* readFileHelper(FILE* stream){
-   char c = fgetc(stream);
+  char *line;
+  if(fgets(line, 1000, stream) != NULL){//change second parameter
+  char c = fgetc(stream);
+  fgets(line, 1000, stream);
+  if(c == 'Q'){
+    return binary_tree_create_stt(line, readFileHelper(stream), readFileHelper(stream));
+  }
+  else if(c == 'A'){
+    return binary_tree_create_s(line);
+  }
+  }
 }
 
 void toFileHelper(binary_tree* self, FILE* stream){
