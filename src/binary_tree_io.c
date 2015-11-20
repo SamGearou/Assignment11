@@ -14,9 +14,9 @@ binary_tree* binary_tree_create_f(FILE* stream){
 }
 
 binary_tree* readFileHelper(FILE* stream){
-
+   char c = fgetc(stream);
 }
 
-binary_tree* toFileHelper(binary_tree* self, FILE* stream){
+void toFileHelper(binary_tree* self, FILE* stream){
 
 }
