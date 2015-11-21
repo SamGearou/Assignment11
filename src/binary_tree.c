@@ -11,8 +11,6 @@ struct binary_tree
   binary_tree* right;
   binary_tree* parent;
 };
-int index=0;
-int *p = &index;
 
 binary_tree* binary_tree_create(){
   binary_tree* bTree = malloc(sizeof(binary_tree));
@@ -24,19 +22,17 @@ binary_tree* binary_tree_create(){
 
 binary_tree* binary_tree_create_s(char* str){
   binary_tree* bTree = malloc(sizeof(binary_tree));
-  bTree->value[*p] = *str;
-  bTree->left = binary_tree_create();
-  bTree->right=binary_tree_create();
-  *p++;
+  bTree->left = NULL;
+  bTree->right= NULL;
+  *bTree->value = *str;
   return bTree;
 }
 
 binary_tree* binary_tree_create_stt(char* str, binary_tree* left, binary_tree* right){
 binary_tree* bTree = malloc(sizeof(binary_tree));
-bTree->value[*p] = *str;
 bTree->left = left;
 bTree->right = right;
-*p++;
+*bTree->value = *str;
 return bTree;
 }
 
@@ -50,6 +46,7 @@ if(binary_tree_is_empty(self)){
 }
 if(self->left != NULL){
   self->left = left;
+  left->parent = self;
 }
 }
 
@@ -59,6 +56,7 @@ if(binary_tree_is_empty(self)){
 }
 if(self->right != NULL){
   self->right = right;
+  right->parent = self;
 }
 }
 

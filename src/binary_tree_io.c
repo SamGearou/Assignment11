@@ -2,7 +2,7 @@
 
 #include "binary_tree_io.h"
 #include <stdio.h>
-#include "binary_tree.h"
+
 
 
 void binary_tree_write(binary_tree* self, FILE* stream){
