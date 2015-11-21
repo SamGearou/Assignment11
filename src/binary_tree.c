@@ -40,7 +40,7 @@ void binary_tree_destroy(binary_tree* self){
 
 }
 
-void binary_tree_set_left(binary_tree* self, binary_tree* left){//self = parent, check this method
+void binary_tree_set_left(binary_tree* self, binary_tree* left){//self = parent, check this method!
 if(binary_tree_is_empty(self)){
   return;
 }
@@ -50,7 +50,7 @@ if(self->left != NULL){
 }
 }
 
-void binary_tree_set_right(binary_tree* self, binary_tree* right){//self = parent, check this method
+void binary_tree_set_right(binary_tree* self, binary_tree* right){//self = parent, check this method!
 if(binary_tree_is_empty(self)){
   return;
 }
