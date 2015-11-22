@@ -37,7 +37,13 @@ return bTree;
 }
 
 void binary_tree_destroy(binary_tree* self){
-
+if(self->left != NULL){
+  binary_tree_destroy(self->left);
+}
+if(self->right != NULL){
+  binary_tree_destroy(self->right);
+}
+free(self);
 }
 
 void binary_tree_set_left(binary_tree* self, binary_tree* left){//self = parent, check this method!
@@ -75,11 +81,17 @@ bool binary_tree_is_leaf(binary_tree* self){
 }
 
 bool binary_tree_is_left(binary_tree* self){
-
+  if(self->parent == NULL){
+    return false;
+  }
+return self == binary_tree_get_left(self->parent); //check
 }
 
 bool binary_tree_is_right(binary_tree* self){
-
+  if(self->parent == NULL){
+    return false;
+  }
+  return self == binary_tree_get_right(self->parent); //check
 }
 
 bool binary_tree_is_root(binary_tree* self){
@@ -90,11 +102,24 @@ return false;
 }
 
 int binary_tree_height(binary_tree* self){
-
+if(binary_tree_is_empty(self)){
+  return -1;
+}
+int greater;
+if(binary_tree_height(self->left) > binary_tree_height(self->right)){
+  greater = binary_tree_height(self->left);
+}
+else{
+  greater = binary_tree_height(self->right);
+}
+return 1 + greater;
 }
 
 int binary_tree_depth(binary_tree* self){
-
+if(self->parent == NULL){
+  return 0;
+}
+return 1 + binary_tree_height(self->parent);
 }
 
 char* binary_tree_get_string(binary_tree* self, char* str){
@@ -114,5 +139,8 @@ binary_tree* binary_tree_get_parent(binary_tree* self){
 }
 
 binary_tree* binary_tree_get_root(binary_tree* self){
-
+if(self->parent == NULL){
+  return self;
+}
+return binary_tree_get_root(self->parent);
 }
