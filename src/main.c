@@ -12,9 +12,11 @@ int main()
   printf("Welcome to the Animals game!\n");
 
   // TODO: Add the game...
-  binary_tree* right;
   char* str = "Hello";
-  binary_tree *obj = binary_tree_create_s(str);
-  
+  binary_tree* obj = binary_tree_create_s(str);
+  binary_tree* obj2 = binary_tree_create_s(str);
+  binary_tree_set_left(obj, obj2);
+  printf("%d\n", binary_tree_height(obj));
+
   return EXIT_SUCCESS;
 }
