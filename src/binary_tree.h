@@ -20,13 +20,6 @@
 
 typedef struct binary_tree binary_tree;
 
-struct binary_tree
-{
-  char value[MAX_STRING_SIZE];
-  binary_tree* left;
-  binary_tree* right;
-  binary_tree* parent;
-};
 
 // Constructors
 binary_tree* binary_tree_create();
@@ -55,5 +48,6 @@ binary_tree* binary_tree_get_left(binary_tree* self);
 binary_tree* binary_tree_get_right(binary_tree* self);
 binary_tree* binary_tree_get_parent(binary_tree* self);
 binary_tree* binary_tree_get_root(binary_tree* self);
+char* binary_tree_get_value(binary_tree* self);
 
 #endif//__BINARY_TREE_H__

@@ -1,6 +1,7 @@
 // TODO: Implement the methods in binary_tree_io.h.
 
-#include "binary_tree_io.h"
+
+#include "binary_tree_io.h" 
 #include <stdio.h>
 
 
@@ -36,11 +37,11 @@ binary_tree* readFileHelper(FILE* stream){
 
 void toFileHelper(binary_tree* self, FILE* stream){
 if(binary_tree_is_leaf(self)){
-fputs(self->value, stream);
+fputs(binary_tree_get_value(self), stream);
 }
 else{
-fputs(self->value, stream);
-toFileHelper(binary_tree_get_left(self->left), stream);
-toFileHelper(binary_tree_get_right(self->right), stream);
+fputs(binary_tree_get_value(self), stream);
+toFileHelper(binary_tree_get_left(binary_tree_get_left(self)), stream);
+toFileHelper(binary_tree_get_right(binary_tree_get_right(self)), stream);
 }
 }
