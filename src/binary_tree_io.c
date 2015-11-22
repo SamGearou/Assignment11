@@ -15,7 +15,7 @@ binary_tree* binary_tree_create_f(FILE* stream){
 binary_tree* readFileHelper(FILE* stream){
   char c = fgetc(stream);
   char *line;
-  if(fgets(line, 1000, stream) != NULL && !feof(stream)){//change second parameter
+  if(fgets(line, 6, stream) != NULL && !feof(stream)){//change second parameter
   fgets(line, 1000, stream);
   if(c == 'Q'){
     return binary_tree_create_stt(line, readFileHelper(stream), readFileHelper(stream));
@@ -36,7 +36,11 @@ binary_tree* readFileHelper(FILE* stream){
 
 void toFileHelper(binary_tree* self, FILE* stream){
 if(binary_tree_is_leaf(self)){
-char c = fgetc(stream);
 fputs(self->value, stream);
+}
+else{
+fputs(self->value, stream);
+toFileHelper(binary_tree_get_left(self->left), stream);
+toFileHelper(binary_tree_get_right(self->right), stream);
 }
 }

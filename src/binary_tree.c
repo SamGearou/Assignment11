@@ -17,7 +17,7 @@ binary_tree* binary_tree_create_s(char* str){
   binary_tree* bTree = malloc(sizeof(binary_tree));
   bTree->left = NULL;
   bTree->right= NULL;
-  *bTree->value = *str;
+  strcpy(bTree->value, str);
   return bTree;
 }
 
@@ -25,7 +25,7 @@ binary_tree* binary_tree_create_stt(char* str, binary_tree* left, binary_tree* r
 binary_tree* bTree = malloc(sizeof(binary_tree));
 bTree->left = left;
 bTree->right = right;
-*bTree->value = *str;
+strcpy(bTree->value, str);
 return bTree;
 }
 
