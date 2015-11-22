@@ -37,7 +37,6 @@ binary_tree* readFileHelper(FILE* stream){
 void toFileHelper(binary_tree* self, FILE* stream){
 if(binary_tree_is_leaf(self)){
 char c = fgetc(stream);
-char *para = self->value;
-fputs(para, stream);
+fputs(self->value, stream);
 }
 }
