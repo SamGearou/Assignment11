@@ -16,6 +16,7 @@ struct binary_tree
 
 binary_tree* binary_tree_create(){
   binary_tree* bTree = malloc(sizeof(binary_tree));
+  bTree->value[0] = '\0';
   bTree->parent = NULL;
   bTree->left = NULL;
   bTree->right = NULL;
@@ -24,31 +25,29 @@ binary_tree* binary_tree_create(){
 
 binary_tree* binary_tree_create_s(char* str){
   binary_tree* bTree = malloc(sizeof(binary_tree));
-  bTree->left = NULL;
-  bTree->right= NULL;
+  bTree->left = binary_tree_create();
+  bTree->right= binary_tree_create();
   strcpy(bTree->value, str);
   return bTree;
 }
 
 binary_tree* binary_tree_create_stt(char* str, binary_tree* left, binary_tree* right){
   binary_tree* bTree = malloc(sizeof(binary_tree));
-  bTree->left = left;
-  bTree->right = right;
+  bTree->left = left; //assumed that left param was malloc'ed
+  bTree->right = right; //assumed that right param was malloc'ed
   strcpy(bTree->value, str);
   return bTree;
 }
 
 void binary_tree_destroy(binary_tree* self){
   if(self->left != NULL){
-    free(self);
-    self=NULL;
+    binary_tree_destroy(self->left);
   }
-  //   binary_tree_destroy(self->left);
-  // }
-  // if(self->right != NULL){
-  //   binary_tree_destroy(self->right);
-  // }
-  // free(self);
+  if(self->right != NULL){
+    binary_tree_destroy(self->right);
+  }
+  free(self);
+  self=NULL;
 }
 
 void binary_tree_set_left(binary_tree* self, binary_tree* left){//self = parent, check this method!
