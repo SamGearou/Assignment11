@@ -13,7 +13,7 @@ int main()
 
   // TODO: Add the game...
   char* str = "Hello";
-  binary_tree* obj = binary_tree_create_s(str);
+  binary_tree* obj = binary_tree_create();
   binary_tree* obj2 = binary_tree_create_s(str);
   binary_tree_set_left(obj, obj2);
   printf("%d\n", binary_tree_height(obj));

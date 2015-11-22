@@ -115,7 +115,7 @@ bool binary_tree_is_root(binary_tree* self){
 }
 
 int binary_tree_height(binary_tree* self){
-  if(binary_tree_is_empty(self)){
+  if(binary_tree_get_left(self) == NULL && binary_tree_get_right(self) == NULL) {
     return 0;
   }
   int greater;
