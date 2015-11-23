@@ -16,7 +16,7 @@ struct binary_tree
 
 binary_tree* binary_tree_create(){
   binary_tree* bTree = malloc(sizeof(binary_tree));
-  bTree->value[0] = '\0';
+  strcpy(bTree->value, "NULL");
   bTree->parent = NULL;
   bTree->left = NULL;
   bTree->right = NULL;
@@ -80,9 +80,9 @@ bool binary_tree_is_empty(binary_tree* self){
 }
 
 bool binary_tree_is_leaf(binary_tree* self){
-  if(self != NULL && self->right == NULL && self->left == NULL){
+  if(strcmp(self->right->value, "NULL") == 0 && strcmp(self->left->value, "NULL") == 0){
     return true;
-  }
+}
   return false;
 }
 

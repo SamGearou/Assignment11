@@ -29,6 +29,7 @@ binary_tree* readFileHelper(FILE* stream){
     return binary_tree_create();
   }
   else{
+    printf("In the last block\n");
     fclose(stream);
     return NULL;
   }
@@ -40,7 +41,7 @@ fputs(binary_tree_get_string(self, NULL), stream);
 }
 else{
 fputs(binary_tree_get_string(self, NULL), stream);
-toFileHelper(binary_tree_get_left(binary_tree_get_left(self)), stream);
-toFileHelper(binary_tree_get_right(binary_tree_get_right(self)), stream);
+toFileHelper(binary_tree_get_left(self), stream);
+toFileHelper(binary_tree_get_right(self), stream);
 }
 }

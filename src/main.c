@@ -13,8 +13,8 @@ int main()
   printf("Welcome to the Animals game!\n");
 
   // TODO: Add the game...
-FILE* input = fopen("Ok.txt", "r");
-binary_tree_create_f(input);
-
+  FILE* input = fopen("Ok.txt", "r");
+  binary_tree* obj = binary_tree_create_f(input);
+  binary_tree_write(obj, stdout);
   return EXIT_SUCCESS;
 }
