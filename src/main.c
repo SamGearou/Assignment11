@@ -14,8 +14,7 @@ int main()
 
   // TODO: Add the game...
 FILE* input = fopen("Ok.txt", "r");
-binary_tree* obj = binary_tree_create_f(input);
-printf("%s\n", binary_tree_get_string(binary_tree_get_right(obj), NULL));
+binary_tree_create_f(input);
 
   return EXIT_SUCCESS;
 }
