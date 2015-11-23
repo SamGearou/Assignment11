@@ -37,8 +37,8 @@ binary_tree* binary_tree_create_s(char* str){
 binary_tree* binary_tree_create_stt(char* str, binary_tree* left, binary_tree* right){
   binary_tree* bTree = malloc(sizeof(binary_tree));
   bTree->parent = NULL;
-    binary_tree_set_left(bTree, left);
-    binary_tree_set_right(bTree, right);
+  binary_tree_set_left(bTree, left);
+  binary_tree_set_right(bTree, right);
   strcpy(bTree->value, str);
   return bTree;
 }
@@ -59,8 +59,8 @@ void binary_tree_set_left(binary_tree* self, binary_tree* left){//self = parent,
     return;
   }
   self->left = malloc(sizeof(binary_tree));
-    self->left = left;
-    self->left->parent = self;
+  self->left = left;
+  left->parent = self;
 }
 
 void binary_tree_set_right(binary_tree* self, binary_tree* right){//self = parent, check this method!
@@ -68,14 +68,11 @@ void binary_tree_set_right(binary_tree* self, binary_tree* right){//self = paren
     return;
   }
   self->right = malloc(sizeof(binary_tree));
-    self->right = right;
-    self->right->parent = self;
+  self->right = right;
+  self->right->parent = self;
 }
 
 bool binary_tree_is_empty(binary_tree* self){
-  if(self == NULL){
-    return true;
-  }
   if(self->parent == NULL && self->left == NULL && self->right == NULL){
     return true;
   }
@@ -132,11 +129,11 @@ int binary_tree_depth(binary_tree* self){
   if(self->parent == NULL){
     return 0;
   }
-  return 1 + binary_tree_height(self->parent);
+  return 1 + binary_tree_depth(self->parent);
 }
 
 char* binary_tree_get_string(binary_tree* self, char* str){
-
+  return self->value;
 }
 
 binary_tree* binary_tree_get_left(binary_tree* self){
@@ -156,7 +153,4 @@ binary_tree* binary_tree_get_root(binary_tree* self){
     return self;
   }
   return binary_tree_get_root(self->parent);
-}
-char* binary_tree_get_value(binary_tree* self){
-  return self->value;
 }

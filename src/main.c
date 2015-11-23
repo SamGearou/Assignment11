@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "binary_tree.h"
+#include "binary_tree_io.h"
 #include <string.h>
 // TODO: You will probably need to add more includes...
 
@@ -12,11 +13,9 @@ int main()
   printf("Welcome to the Animals game!\n");
 
   // TODO: Add the game...
-  char* str = "Hello";
-  binary_tree* obj = binary_tree_create();
-  binary_tree* obj2 = binary_tree_create_s(str);
-  binary_tree_set_left(obj, obj2);
-  printf("%d\n", binary_tree_height(obj));
+FILE* input = fopen("Ok.txt", "r");
+binary_tree* obj = binary_tree_create_f(input);
+printf("%s\n", binary_tree_get_string(binary_tree_get_right(obj), NULL));
 
   return EXIT_SUCCESS;
 }
