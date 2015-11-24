@@ -1,7 +1,1 @@
-QDoes it moo?
-QIs it bigger than a breadbox?
-Agnat
-QDoes it live in the water?
-Aelephant
-Awhale
-Acow
+QWhat is the dog’s name?

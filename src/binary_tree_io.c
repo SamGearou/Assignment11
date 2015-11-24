@@ -16,15 +16,18 @@ binary_tree* binary_tree_create_f(FILE* stream){
 binary_tree* readFileHelper(FILE* stream){
   char c = fgetc(stream);
   char line[MAX_STRING_SIZE];
-  if(fgets(line, MAX_STRING_SIZE, stream) != NULL){//change second parameter
+  if(fgets(line, MAX_STRING_SIZE, stream) != NULL){
   if(c == 'Q'){
     return binary_tree_create_stt(line, readFileHelper(stream), readFileHelper(stream));
   }
   else if(c == 'A'){
     return binary_tree_create_s(line);
   }
+  else if(c != 'A' && c != 'Q'){
+    return binary_tree_create();
   }
-  else if(fgets(line, MAX_STRING_SIZE, stream) == NULL || c != 'A' || c!= 'Q'){
+  }
+  else if(fgets(line, MAX_STRING_SIZE, stream) == NULL){
     fclose(stream);
     return binary_tree_create();
   }

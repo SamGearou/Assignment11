@@ -133,7 +133,8 @@ int binary_tree_depth(binary_tree* self){
 }
 
 char* binary_tree_get_string(binary_tree* self, char* str){
-  return self->value;
+  str = self->value;
+  return str;
 }
 
 binary_tree* binary_tree_get_left(binary_tree* self){
