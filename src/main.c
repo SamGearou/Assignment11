@@ -21,17 +21,35 @@
 // }
 int main()
 {
-  FILE* fp = fopen("Ok.txt", "r");
+  FILE* fp = fopen("animals.tree", "r+");
+
+if(fp == NULL){
+  printf("IN HERE\n");
+  fp = fopen("animals.tree", "w+");
+  fputs("Aelephant", fp);
+}
   //char line[MAX_STRING_SIZE];
   //printf("%s\n", fgets(line, MAX_STRING_SIZE, fp));
   //char c = fgetc(stdin);
   //printf("%c\n", c);
 
-
-  //play(fp, NULL);
+  //play(fp, fp);
+  //char* val;
   binary_tree* obj = binary_tree_create_f(fp);
-  char* value;
-  printf("%s\n", binary_tree_get_string(obj, value));
+  //printf("%s\n", binary_tree_get_string(binary_tree_get_right(obj), val));
+// // printf("%s\n", binary_tree_get_string(binary_tree_get_left(obj), val));
+// binary_tree* left = binary_tree_get_left(obj);
+// if(binary_tree_is_leaf(binary_tree_get_left(left))){
+//   printf("THIS IS A LEAF\n");
+// }
+//binary_tree_destroy(obj);
+ //char* val = "Hello";
+//char* ok;
+ //binary_tree* obj = binary_tree_create_f(fp);
+ //printf("%s\n", binary_tree_get_string(obj, ok));
+ //binary_tree_destroy(obj);
 
+  //long ans = getEndOfFile(fp);
+ // printf("%d\n", ans);
   return EXIT_SUCCESS;
 }

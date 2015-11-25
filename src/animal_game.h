@@ -11,5 +11,6 @@
 */
 void play(FILE* inputFile, FILE* outputFile);
 
+binary_tree* playRound(FILE* stream, binary_tree* tree);
 
 #endif//__ANIMAL_GAME_C__

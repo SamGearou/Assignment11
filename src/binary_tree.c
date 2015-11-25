@@ -26,10 +26,8 @@ binary_tree* binary_tree_create(){
 binary_tree* binary_tree_create_s(char* str){
   binary_tree* bTree = malloc(sizeof(binary_tree));
   bTree->parent = NULL;
-  bTree->left = binary_tree_create();
-  bTree->left->parent = bTree;
-  bTree->right = binary_tree_create();
-  bTree->right->parent = bTree;
+  bTree->left = NULL;
+  bTree->right = NULL;
   strcpy(bTree->value, str);
   return bTree;
 }
@@ -37,8 +35,8 @@ binary_tree* binary_tree_create_s(char* str){
 binary_tree* binary_tree_create_stt(char* str, binary_tree* left, binary_tree* right){
   binary_tree* bTree = malloc(sizeof(binary_tree));
   bTree->parent = NULL;
-  binary_tree_set_left(bTree, left);
-  binary_tree_set_right(bTree, right);
+  bTree->left = left;
+  bTree->right = right;
   strcpy(bTree->value, str);
   return bTree;
 }
@@ -58,31 +56,27 @@ void binary_tree_set_left(binary_tree* self, binary_tree* left){//self = parent,
   if(binary_tree_is_empty(self)){
     return;
   }
-  self->left = malloc(sizeof(binary_tree));
   self->left = left;
-  left->parent = self;
 }
 
 void binary_tree_set_right(binary_tree* self, binary_tree* right){//self = parent, check this method!
   if(binary_tree_is_empty(self)){
     return;
   }
-  self->right = malloc(sizeof(binary_tree));
   self->right = right;
-  self->right->parent = self;
 }
 
 bool binary_tree_is_empty(binary_tree* self){
-  if(self->parent == NULL && self->left == NULL && self->right == NULL){
+  if(self->parent == NULL && self->left == NULL && self->right == NULL && strcmp(self->value, "NULL") == 0){
     return true;
   }
   return false;
 }
 
 bool binary_tree_is_leaf(binary_tree* self){
-  if(strcmp(self->right->value, "NULL") == 0 && strcmp(self->left->value, "NULL") == 0){
+  if(self->right == NULL && self->left == NULL){
     return true;
-}
+  }
   return false;
 }
 
