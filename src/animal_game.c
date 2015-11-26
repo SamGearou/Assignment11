@@ -5,32 +5,53 @@
 #include "binary_tree_io.h"
 #include "animal_game.h"
 
-binary_tree* parent;
-binary_tree* newTree;
-
-void play(FILE* inputFile, FILE* outputFile){
-  binary_tree* tree = binary_tree_create_f(inputFile);
-  printf("Welcome to the Animals game!\n"); //println
-  printf("\n");
-  printf("Shall we play a game1? "); //println
-  char c;
-  scanf(" %c", &c);
-  printf("C EQUALS L%cL\n", c);
-  while(c == 'y'){
-    tree = playRound(inputFile, tree);
-    printf("\n");
-    printf("Shall we play a game2? "); //println
-    scanf(" %c", &c);
+binary_tree* parent; //the parent of the current node
+binary_tree* newTree; //the newTree that is constructed before the initialization of a new game
+/**
+*@brief starts the initialization of the game
+*@param inputFile the file that is read in and used in the game
+*/
+void play(FILE* inputFile){
+  if(inputFile == NULL){
+    printf("IN HERE\n");
+    inputFile = fopen("src/animals.tree", "w+");
+    fputs("Aelephant", inputFile);
+    rewind(inputFile);
   }
-  printf("Bye!\n"); //println
-  binary_tree_write(tree, outputFile);
-  fclose(outputFile);
-  binary_tree_destroy(tree);
+  binary_tree* tree = binary_tree_create_f(inputFile);
+  if(inputFile != NULL){
+  printf("Welcome to the Animals game!\n"); //starts the game
+  printf("\n");
+  printf("Shall we play a game? "); //asks to play
+  char c;
+  scanf(" %c", &c); //scans for either a 'y' or 'n' char
+  while(c == 'y'){
+    char* val;
+    tree = playRound(inputFile, tree); //plays the game
+    printf("\n");
+    printf("Shall we play a game? "); //asks to play
+    scanf(" %c", &c); //scans for either a 'y' or 'n' char
+  }
+  printf("Bye!\n"); //quits the game
+  freopen("src/animals.tree", "w", inputFile); //makes a blank file to be written to
+  binary_tree_write(tree, inputFile); //writes the new information to the file
+  rewind(inputFile); //rewinds to the beginning of the file
+  fclose(inputFile); //closes the file
+  binary_tree_destroy(tree); //free's the malloc'ed memory
   return;
 }
-
+else{
+  printf("File is null or not in the correct format\n");
+}
+}
+/**
+* @brief the main game loop
+* @param stream the file that is to be read in
+* @param tree the binary_tree that is created from the read file
+* @return the new tree that is constructed based on the updated file
+*/
 binary_tree* playRound(FILE* stream, binary_tree* tree){
-  char answer;
+  char answer; //the answer to the question shown
   binary_tree* root = tree;
   char* value;
   char testing[MAX_STRING_SIZE];
@@ -39,7 +60,7 @@ binary_tree* playRound(FILE* stream, binary_tree* tree){
     if(testing[strlen(testing)-1] == '\n'){
       testing[strlen(testing)-1] = '\0';
     }
-    printf("%s ", testing); //println  Does it moo?
+    printf("%s ", testing);
     rewind(stdin);
     scanf(" %c", &answer);
     if(answer == 'y'){
@@ -55,7 +76,7 @@ binary_tree* playRound(FILE* stream, binary_tree* tree){
     answer = 's';
   }
   char* val;
-  char finalAnswer;
+  char finalAnswer; //the answer to the question prompted
   char testing2[MAX_STRING_SIZE];
   strcpy(testing2, binary_tree_get_string(tree, val));
   if(testing2[strlen(testing2)-1] == '\n'){
@@ -78,13 +99,13 @@ binary_tree* playRound(FILE* stream, binary_tree* tree){
     if(testing3[strlen(testing3)-1] == '\n'){
       testing3[strlen(testing3)-1] = '\0';
     }
-    scanf("%s", animal);
+    scanf("%s", animal); //scans stdin for your animal
     printf("What question separates %s from %s? ", animal, testing3);
     rewind(stdin);
-    fgets(question, MAX_STRING_SIZE, stdin);
+    fgets(question, MAX_STRING_SIZE, stdin); //scans stdin for your question that must end in a '?' char
     printf("What is the correct answer for this animal? ");
     rewind(stdin);
-    scanf("%s", correctAnswer);
+    scanf("%s", correctAnswer); //the correctAnswer to your question
     if(answer == 's'){
       parent= NULL;
     }
@@ -95,7 +116,6 @@ binary_tree* playRound(FILE* stream, binary_tree* tree){
       newTree = binary_tree_create_stt(question, tree, binary_tree_create_s(animal));
     }
     if(answer == 's'){
-      printf("this is correct\n");
       return newTree;
     }
     else{
