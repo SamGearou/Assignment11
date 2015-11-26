@@ -5,14 +5,6 @@
 #include <string.h>
 #include <stdio.h>
 
-void binary_tree_write(binary_tree* self, FILE* stream){
-  toFileHelper(self, stream);
-}
-
-binary_tree* binary_tree_create_f(FILE* stream){
-  return readFileHelper(stream);
-}
-
 /**
 * @brief a helper function that processes information from a file and converts it into a binary tree
 * @param stream that file that is read from
@@ -67,4 +59,12 @@ void toFileHelper(binary_tree* self, FILE* stream){
     toFileHelper(binary_tree_get_left(self), stream);
     toFileHelper(binary_tree_get_right(self), stream);
   }
+}
+
+void binary_tree_write(binary_tree* self, FILE* stream){
+  toFileHelper(self, stream);
+}
+
+binary_tree* binary_tree_create_f(FILE* stream){
+  return readFileHelper(stream);
 }
