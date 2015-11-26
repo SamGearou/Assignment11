@@ -1,18 +1,9 @@
-// TODO: Implement the methods in binary_tree_io.h.
-
 
 #include "binary_tree_io.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-
-int num = -1;
-int* i = &num;
-int nums = -1;
-int* j = &nums;
-bool isInorder;
-bool* ok = &isInorder;
 
 void binary_tree_write(binary_tree* self, FILE* stream){
   toFileHelper(self, stream);
@@ -22,6 +13,11 @@ binary_tree* binary_tree_create_f(FILE* stream){
   return readFileHelper(stream);
 }
 
+/**
+* @brief a helper function that processes information from a file and converts it into a binary tree
+* @param stream that file that is read from
+* @return the tree that is created from reading the file
+*/
 binary_tree* readFileHelper(FILE* stream){
   printf("1\n");
   char c = fgetc(stream);
@@ -49,20 +45,12 @@ binary_tree* readFileHelper(FILE* stream){
     return NULL;
   }
 }
-bool isInPreorder(FILE* stream, binary_tree* self) {
-  binary_tree* tree = readFileHelper(stream);
-  char* val;
-  char value[MAX_STRING_SIZE];
-  if(tree != NULL){
-    strcpy(value, binary_tree_get_string(tree, val));
-    if(value[strlen(value)-2] == '?'){
-    if(binary_tree_get_left(tree) != NULL && binary_tree_get_right(tree) != NULL){
 
-    }
-  }
-  }
-}
-
+/**
+* @brief a helper function that writes to a file based on a specific tree
+* @param self the tree that is referenced based on the value of its nodes
+* @param stream the file to be written to
+*/
 void toFileHelper(binary_tree* self, FILE* stream){
   if(binary_tree_is_leaf(self)){
     char value[MAX_STRING_SIZE];

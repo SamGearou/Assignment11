@@ -1,4 +1,4 @@
-// TODO: Add Javadoc style header
+
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -7,12 +7,14 @@
 #include "animal_game.h"
 #include <string.h>
 
+/**
+* @brief starts the main game loop
+*/
 int main()
 {
-  FILE* fp = fopen("src/animals.tree", "r+");
+  FILE* fp = fopen("src/animals.tree", "r+"); //the file that is to be read 
 
   play(fp);
-
 
   return EXIT_SUCCESS;
 }

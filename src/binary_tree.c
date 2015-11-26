@@ -1,10 +1,7 @@
 
 
-#include "binary_tree.h" //.h
+#include "binary_tree.h"
 
-// We have provided you with the binary tree struct. This struct must not be
-// changed. You should implement the binary tree functions declared in
-// binary_tree.h, and any helper functions you would like in this file.
 
 struct binary_tree
 {
@@ -52,14 +49,14 @@ void binary_tree_destroy(binary_tree* self){
   self=NULL;
 }
 
-void binary_tree_set_left(binary_tree* self, binary_tree* left){//self = parent, check this method!
+void binary_tree_set_left(binary_tree* self, binary_tree* left){
   if(binary_tree_is_empty(self)){
     return;
   }
   self->left = left;
 }
 
-void binary_tree_set_right(binary_tree* self, binary_tree* right){//self = parent, check this method!
+void binary_tree_set_right(binary_tree* self, binary_tree* right){
   if(binary_tree_is_empty(self)){
     return;
   }

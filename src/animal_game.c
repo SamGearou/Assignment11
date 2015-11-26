@@ -7,10 +7,7 @@
 
 binary_tree* parent; //the parent of the current node
 binary_tree* newTree; //the newTree that is constructed before the initialization of a new game
-/**
-*@brief starts the initialization of the game
-*@param inputFile the file that is read in and used in the game
-*/
+
 void play(FILE* inputFile){
   if(inputFile == NULL){
     printf("IN HERE\n");
@@ -44,12 +41,7 @@ else{
   printf("File is null or not in the correct format\n");
 }
 }
-/**
-* @brief the main game loop
-* @param stream the file that is to be read in
-* @param tree the binary_tree that is created from the read file
-* @return the new tree that is constructed based on the updated file
-*/
+
 binary_tree* playRound(FILE* stream, binary_tree* tree){
   char answer; //the answer to the question shown
   binary_tree* root = tree;
